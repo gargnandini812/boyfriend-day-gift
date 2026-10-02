@@ -3,133 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Jaaneman ❤️</title>
+    <title>For Your Eyes Only ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Floating hearts -->
-    <div class="hearts">
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
-        <span>♡</span>
+    <!-- Floating background hearts -->
+    <div class="hearts" aria-hidden="true">
+        <span>♡</span><span>♡</span><span>♡</span><span>♡</span>
+        <span>♡</span><span>♡</span><span>♡</span><span>♡</span>
     </div>
 
-    <!-- SCREEN 1 -->
-    <section id="screen1" class="screen active">
-        <div class="content">
-            <div class="big-heart">♥</div>
-
-            <h1>A veryyy Happyyy<br>Boyfriend's Dayy,<br>myy babyyyy ❤️</h1>
-
-            <button onclick="showScreen(2)">
-                Continue ♡
-            </button>
+    <!-- OPENING SCREEN -->
+    <section id="screen0" class="screen active">
+        <div class="content opening-content">
+            <div class="opening-envelope">💌</div>
+            <p class="eyebrow">For your eyes only</p>
+            <h1>Something special<br>is waiting for you...</h1>
+            <p class="tiny-line">Open when you're ready ♡</p>
+            <button onclick="showScreen(1)">Open it ♡</button>
         </div>
     </section>
 
+    <!-- SCREEN 1 -->
+    <section id="screen1" class="screen">
+        <div class="content">
+            <div class="big-heart">♥</div>
+            <h1>A veryyy Happyyy<br>Boyfriend's Dayy,<br>myy babyyyy ❤️</h1>
+            <button onclick="showScreen(2)">Continue ♡</button>
+        </div>
+    </section>
 
     <!-- SCREEN 2 -->
     <section id="screen2" class="screen">
-        <div class="content">
-
-            <div class="small-heart">♡</div>
-
-            <p class="opening-message">
-                I don't need a reason to love you, but for you to know
-                why I fall more for you every day, here are some reasons… ❤️
+        <div class="content second-content">
+            <div class="mini-envelope">💌</div>
+            <h2>I don't need a reason to love you...</h2>
+            <p>
+                But for you to know why I fall more for you every day,
+                here are some reasons… ❤️
             </p>
-
-            <button onclick="showScreen(3)">
-                Open the jar 💌
-            </button>
-
+            <button onclick="showScreen(3)">Open the jar 💌</button>
         </div>
     </section>
 
-
-    <!-- SCREEN 3 - JAR -->
+    <!-- SCREEN 3 : JAR -->
     <section id="screen3" class="screen">
-
         <div class="jar-page">
 
-            <p class="little-title">A few reasons why I love you...</p>
+            <div class="sparkles" aria-hidden="true">
+                <span class="sparkle s1">✦</span>
+                <span class="sparkle s2">✧</span>
+                <span class="sparkle s3">✦</span>
+                <span class="sparkle s4">✧</span>
+                <span class="sparkle s5">✦</span>
+                <span class="sparkle s6">✧</span>
+            </div>
 
-            <div class="counter">
-                <span id="currentNumber">0</span> / 56
+            <div class="jar-heading">
+                <p class="eyebrow">A little jar full of reasons</p>
+                <div class="counter"><span id="currentNumber">0</span> / 56</div>
             </div>
 
             <div class="jar-container">
-
                 <div class="jar-lid"></div>
-
                 <div class="jar">
-
                     <div class="jar-shine"></div>
-
                     <div id="note" class="note">
-                        <p id="reasonText">
-                            Your first reason is waiting for you... ❤️
-                        </p>
+                        <p id="reasonText">Pick a reason and see what comes out... ♡</p>
                     </div>
-
                 </div>
-
             </div>
 
-            <button id="reasonButton" onclick="showReason()">
-                Pick a reason 💌
+            <button id="reasonButton" onclick="showReason()">Pick a reason 💌</button>
+
+            <button id="songButton" class="song-button" onclick="toggleMusic()">
+                Play our song ♫
             </button>
 
-            <p class="tap-text">
-                Keep opening them... there's 56 of them ♡
+            <audio id="bgMusic" loop preload="none">
+                <source src="TumSeHi.mp3.mp3" type="audio/mpeg">
+            </audio>
+
+            <p class="music-note">
+                Add your own legally usable <b>song.mp3</b> to this folder to use the music button.
             </p>
-
         </div>
-
     </section>
-
 
     <!-- FINAL SCREEN -->
     <section id="finalScreen" class="screen">
-
-        <div class="content final-content">
-
-            <div class="big-heart final-heart">♥</div>
-
-            <h2>And that's all...</h2>
-
-            <p class="final-message">
-                They were just a few reasons why I love you… ❤️
-                <br><br>
-
-                They were specifically 56 because arre,
-                main nahi bataungi… aap khud hi socho. 🤭❤️
-                <br><br>
-
-                So just remember, I loveee youuu soooo muchhhhh,
-                janeman. 🥹❤️
-                <br><br>
-
-                And I am yours, forever. ♾️❤️
-            </p>
-
-            <div class="forever">
-                ♡ ∞ ♡
-            </div>
-
+        <div class="final-stars" aria-hidden="true">
+            <span>✦</span><span>✧</span><span>✦</span><span>✧</span>
+            <span>✦</span><span>✧</span><span>✦</span><span>✧</span>
         </div>
 
+        <div class="content final-content">
+            <div class="final-heart">♥</div>
+
+            <p class="eyebrow">You made it to the end ♡</p>
+            <h2>And that's all...</h2>
+
+            <div class="final-message">
+                <p>They were just a few reasons why I love you… ❤️</p>
+
+                <p>
+                    They were specifically 56 because arre,<br>
+                    main nahi bataungi… aap khud hi socho. 🤭❤️
+                </p>
+
+                <p>
+                    So just remember, I loveee youuu soooo muchhhhh,<br>
+                    janeman. 🥹❤️
+                </p>
+
+                <p>And I am yours, forever. ♾️❤️</p>
+            </div>
+
+            <div class="forever">♡ ∞ ♡</div>
+            <p class="made-with">Made with love, just for you. ♡</p>
+        </div>
     </section>
 
-
     <script src="script.js"></script>
-
 </body>
 </html>

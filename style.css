@@ -1,40 +1,39 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family: "Georgia", serif;
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
     background: #fff8f5;
     color: #4a2529;
+    font-family: Georgia, "Times New Roman", serif;
     overflow: hidden;
 }
 
-
-/* =========================
-   GENERAL SCREEN
-========================= */
+/* ---------- SCREENS ---------- */
 
 .screen {
     position: fixed;
     inset: 0;
-
+    width: 100%;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 25px;
     text-align: center;
 
     opacity: 0;
     visibility: hidden;
-
-    transform: scale(1.03);
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease,
-        visibility 0.8s;
+    transform: scale(0.98);
+    transition: opacity 0.65s ease, transform 0.65s ease, visibility 0.65s ease;
+    z-index: 2;
 }
 
 .screen.active {
@@ -43,523 +42,579 @@ body {
     transform: scale(1);
 }
 
-
-/* =========================
-   CONTENT
-========================= */
-
 .content {
-    width: min(90%, 650px);
+    width: min(900px, 94vw);
     position: relative;
     z-index: 5;
 }
 
+/* ---------- BACKGROUND HEARTS ---------- */
 
-/* =========================
-   FIRST SCREEN
-========================= */
-
-.big-heart {
-    font-size: 70px;
-    color: #9d3f52;
-
-    animation: heartbeat 1.8s infinite;
-
-    margin-bottom: 25px;
+.hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
 }
 
-h1 {
-    font-size: clamp(32px, 6vw, 58px);
-    line-height: 1.25;
-
-    color: #762c3c;
-
-    margin-bottom: 40px;
+.hearts span {
+    position: absolute;
+    bottom: -50px;
+    font-size: 28px;
+    opacity: 0.16;
+    animation: floatHeart 12s linear infinite;
 }
 
+.hearts span:nth-child(1) { left: 7%; animation-delay: 0s; }
+.hearts span:nth-child(2) { left: 22%; animation-delay: 4s; font-size: 20px; }
+.hearts span:nth-child(3) { left: 39%; animation-delay: 2s; }
+.hearts span:nth-child(4) { left: 55%; animation-delay: 6s; font-size: 22px; }
+.hearts span:nth-child(5) { left: 70%; animation-delay: 1s; }
+.hearts span:nth-child(6) { left: 84%; animation-delay: 5s; font-size: 20px; }
+.hearts span:nth-child(7) { left: 92%; animation-delay: 8s; }
+.hearts span:nth-child(8) { left: 47%; animation-delay: 9s; font-size: 18px; }
 
-/* =========================
-   BUTTONS
-========================= */
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-115vh) rotate(25deg);
+    }
+}
+
+/* ---------- COMMON TEXT ---------- */
+
+.eyebrow {
+    margin: 0 0 18px;
+    color: #9b5b66;
+    font-size: 1.05rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
 
 button {
     border: none;
-
-    padding: 15px 32px;
-
-    border-radius: 40px;
-
-    background: #8e394c;
+    background: #9b3d55;
     color: white;
-
-    font-family: inherit;
-    font-size: 17px;
-
+    font: inherit;
+    font-size: 1.15rem;
+    padding: 16px 34px;
+    border-radius: 999px;
     cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(120, 45, 60, 0.22);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
+    box-shadow: 0 12px 30px rgba(100, 35, 50, 0.18);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    position: relative;
+    z-index: 10;
 }
 
 button:hover {
     transform: translateY(-3px);
-
-    background: #742d3e;
-
-    box-shadow:
-        0 12px 30px rgba(120, 45, 60, 0.3);
+    box-shadow: 0 16px 34px rgba(100, 35, 50, 0.24);
+    background: #8f354d;
 }
 
 button:active {
-    transform: scale(0.96);
+    transform: translateY(0) scale(0.98);
 }
 
+/* ---------- OPENING SCREEN ---------- */
 
-/* =========================
-   SECOND SCREEN
-========================= */
-
-.small-heart {
-    font-size: 65px;
-    color: #b05265;
-
-    margin-bottom: 25px;
-
-    animation: floatHeart 3s ease-in-out infinite;
+.opening-content {
+    animation: openingIn 0.9s ease both;
 }
 
-.opening-message {
-    font-size: clamp(22px, 4vw, 32px);
-
-    line-height: 1.6;
-
-    color: #633238;
-
-    margin-bottom: 40px;
+.opening-envelope {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: envelopeFloat 2.5s ease-in-out infinite;
 }
 
+.opening-content h1 {
+    font-size: clamp(2.3rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    margin: 0 auto 18px;
+}
 
-/* =========================
-   JAR PAGE
-========================= */
+.tiny-line {
+    color: #8d646a;
+    font-size: 1rem;
+    margin: 0 0 30px;
+}
+
+@keyframes openingIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes envelopeFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(-2deg);
+    }
+}
+
+/* ---------- SCREEN 1 ---------- */
+
+.big-heart {
+    color: #a33e55;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 20px;
+    animation: heartbeat 1.7s ease-in-out infinite;
+}
+
+#screen1 h1 {
+    font-size: clamp(2.7rem, 6vw, 5.8rem);
+    line-height: 0.98;
+    margin: 0 auto 42px;
+    letter-spacing: -2px;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    12% { transform: scale(1.08); }
+    24% { transform: scale(1); }
+    36% { transform: scale(1.08); }
+    48% { transform: scale(1); }
+}
+
+/* ---------- SCREEN 2 ---------- */
+
+.second-content {
+    max-width: 700px;
+}
+
+.mini-envelope {
+    font-size: 4rem;
+    margin-bottom: 18px;
+}
+
+#screen2 h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin: 0 0 20px;
+}
+
+#screen2 p:not(.eyebrow) {
+    max-width: 650px;
+    margin: 0 auto 35px;
+    font-size: 1.25rem;
+    line-height: 1.65;
+    color: #6d464b;
+}
+
+/* ---------- JAR SCREEN ---------- */
 
 .jar-page {
-    width: min(95%, 700px);
-
+    width: min(900px, 96vw);
+    height: 100%;
+    min-height: 90dvh;
     display: flex;
     flex-direction: column;
-
     align-items: center;
+    justify-content: center;
+    position: relative;
+}
 
+.jar-heading {
     position: relative;
     z-index: 5;
 }
 
-.little-title {
-    font-size: clamp(20px, 4vw, 28px);
-
-    color: #71313d;
-
+.jar-heading .eyebrow {
     margin-bottom: 8px;
 }
 
 .counter {
-    font-size: 17px;
-
-    color: #a45161;
-
-    margin-bottom: 15px;
-
-    letter-spacing: 1px;
+    color: #8d5961;
+    font-size: 1rem;
+    letter-spacing: 2px;
 }
 
-
-/* =========================
-   JAR
-========================= */
-
 .jar-container {
+    width: 260px;
+    height: 310px;
     position: relative;
-
-    width: 290px;
-    height: 330px;
-
-    margin-bottom: 25px;
+    margin: 18px 0 22px;
+    z-index: 5;
 }
 
 .jar {
     position: absolute;
-
-    left: 50%;
+    left: 18px;
+    right: 18px;
     bottom: 0;
-
-    transform: translateX(-50%);
-
-    width: 255px;
-    height: 285px;
-
-    border: 4px solid rgba(154, 84, 96, 0.45);
-
-    border-radius: 35px 35px 55px 55px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,0.7),
-            rgba(255,216,223,0.45)
-        );
-
+    height: 250px;
+    border: 3px solid rgba(160, 106, 119, 0.55);
+    border-radius: 28px 28px 55px 55px;
+    background: rgba(255, 255, 255, 0.34);
     box-shadow:
-        inset 0 0 35px rgba(255,255,255,0.8),
-        0 20px 45px rgba(125,55,70,0.18);
-
+        inset 0 0 25px rgba(255, 255, 255, 0.65),
+        0 18px 35px rgba(102, 50, 62, 0.14);
+    backdrop-filter: blur(3px);
     overflow: hidden;
-
-    backdrop-filter: blur(5px);
 }
 
-
-/* Jar lid */
-
-.jar-lid {
-    position: absolute;
-
-    z-index: 3;
-
-    top: 20px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 185px;
-    height: 30px;
-
-    border-radius: 10px;
-
-    background: #b06a76;
-
-    box-shadow:
-        0 5px 10px rgba(80,30,40,0.15);
-}
-
-
-/* Jar shine */
-
-.jar-shine {
-    position: absolute;
-
-    top: 30px;
-    left: 25px;
-
-    width: 25px;
-    height: 200px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,0.45);
-
-    transform: rotate(8deg);
-}
-
-
-/* =========================
-   NOTE
-========================= */
-
-.note {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%) rotate(-2deg);
-
-    width: 205px;
-    min-height: 135px;
-
-    padding: 25px 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #fffaf0;
-
-    color: #553036;
-
-    box-shadow:
-        0 8px 18px rgba(75,40,40,0.15);
-
-    transition:
-        transform 0.5s ease,
-        opacity 0.5s ease;
-}
-
-.note::before {
+.jar::after {
     content: "";
-
     position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    left: 0;
-    top: 0;
-
-    background:
-        repeating-linear-gradient(
-            transparent,
-            transparent 27px,
-            rgba(150,100,100,0.07) 28px
-        );
-
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.35),
+        transparent 25%,
+        transparent 75%,
+        rgba(255,255,255,0.22)
+    );
     pointer-events: none;
 }
 
-.note p {
-    font-size: 18px;
+.jar-lid {
+    position: absolute;
+    z-index: 4;
+    top: 35px;
+    left: 42px;
+    right: 42px;
+    height: 34px;
+    border-radius: 12px 12px 7px 7px;
+    background: #b66b7c;
+    box-shadow: 0 8px 12px rgba(90, 40, 50, 0.16);
+}
 
-    line-height: 1.5;
+.jar-shine {
+    position: absolute;
+    top: 24px;
+    left: 22px;
+    width: 15px;
+    height: 175px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.5);
+    transform: rotate(3deg);
+    z-index: 3;
+}
 
-    position: relative;
-
+.note {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 185px;
+    min-height: 120px;
+    padding: 20px 16px;
+    transform: translate(-50%, -50%) rotate(-2deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff3c9;
+    color: #59383b;
+    box-shadow: 0 9px 18px rgba(78, 40, 43, 0.14);
     z-index: 2;
 }
 
+.note::before,
+.note::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #e9d9a9;
+    opacity: 0.5;
+}
 
-/* Animation when changing reason */
+.note::before {
+    top: 7px;
+    left: 8px;
+}
+
+.note::after {
+    bottom: 7px;
+    right: 8px;
+}
+
+.note p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.45;
+}
 
 .note.change {
-    animation: notePop 0.65s ease;
+    animation: notePop 0.55s ease;
 }
 
-
-/* =========================
-   JAR BUTTON
-========================= */
-
-#reasonButton {
-    margin-top: 5px;
+@keyframes notePop {
+    0% {
+        opacity: 0.3;
+        transform: translate(-50%, -45%) rotate(-5deg) scale(0.85);
+    }
+    60% {
+        transform: translate(-50%, -53%) rotate(2deg) scale(1.04);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(-2deg) scale(1);
+    }
 }
 
-.tap-text {
-    margin-top: 15px;
+/* ---------- SPARKLES ---------- */
 
-    font-size: 14px;
-
-    color: #9b626c;
-}
-
-
-/* =========================
-   FINAL SCREEN
-========================= */
-
-.final-content {
-    max-height: 90vh;
-    overflow-y: auto;
-
-    padding: 25px;
-}
-
-.final-heart {
-    margin-bottom: 15px;
-}
-
-h2 {
-    font-size: clamp(30px, 6vw, 48px);
-
-    color: #762c3c;
-
-    margin-bottom: 25px;
-}
-
-.final-message {
-    font-size: clamp(19px, 3.5vw, 26px);
-
-    line-height: 1.65;
-
-    color: #593036;
-}
-
-.forever {
-    margin-top: 25px;
-
-    font-size: 35px;
-
-    color: #9d3f52;
-}
-
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-.hearts span {
-    position: fixed;
-
-    bottom: -50px;
-
-    color: rgba(160, 66, 85, 0.18);
-
-    font-size: 25px;
-
-    animation: floatUp linear infinite;
-
+.sparkles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     z-index: 1;
 }
 
-.hearts span:nth-child(1) {
-    left: 10%;
-    animation-duration: 10s;
+.sparkle {
+    position: absolute;
+    color: #c98a99;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    animation: sparkleTwinkle 2s ease-in-out infinite;
 }
 
-.hearts span:nth-child(2) {
-    left: 22%;
-    animation-duration: 13s;
-    animation-delay: 2s;
+.s1 { left: 27%; top: 25%; animation-delay: 0s; }
+.s2 { left: 67%; top: 23%; animation-delay: 0.5s; font-size: 1.1rem; }
+.s3 { left: 23%; top: 58%; animation-delay: 1s; }
+.s4 { left: 72%; top: 57%; animation-delay: 1.4s; font-size: 1rem; }
+.s5 { left: 32%; top: 70%; animation-delay: 0.8s; font-size: 1rem; }
+.s6 { left: 64%; top: 69%; animation-delay: 1.8s; }
+
+@keyframes sparkleTwinkle {
+    0%, 100% {
+        opacity: 0.18;
+        transform: scale(0.65) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.25) rotate(20deg);
+    }
 }
 
-.hearts span:nth-child(3) {
-    left: 37%;
-    animation-duration: 9s;
-    animation-delay: 1s;
-}
+/* ---------- HEART BURST ---------- */
 
-.hearts span:nth-child(4) {
+.burst-heart {
+    position: fixed;
     left: 50%;
-    animation-duration: 14s;
-    animation-delay: 4s;
+    top: 51%;
+    z-index: 30;
+    pointer-events: none;
+    color: #e45170;
+    font-size: 22px;
+    animation: heartBurst 0.8s ease-out forwards;
 }
 
-.hearts span:nth-child(5) {
-    left: 64%;
-    animation-duration: 11s;
-    animation-delay: 3s;
-}
-
-.hearts span:nth-child(6) {
-    left: 75%;
-    animation-duration: 15s;
-}
-
-.hearts span:nth-child(7) {
-    left: 87%;
-    animation-duration: 10s;
-    animation-delay: 5s;
-}
-
-.hearts span:nth-child(8) {
-    left: 94%;
-    animation-duration: 12s;
-    animation-delay: 1s;
-}
-
-
-/* =========================
-   ANIMATIONS
-========================= */
-
-@keyframes heartbeat {
-
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.15);
-    }
-}
-
-
-@keyframes floatHeart {
-
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-
-@keyframes floatUp {
-
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-110vh) rotate(180deg);
-        opacity: 0;
-    }
-}
-
-
-@keyframes notePop {
-
+@keyframes heartBurst {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.7) rotate(-8deg);
+        transform: translate(-50%, -50%) scale(0.3);
     }
-
-    60% {
-        transform: translate(-50%, -50%) scale(1.08) rotate(3deg);
-    }
-
-    100% {
+    20% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1) rotate(-2deg);
+    }
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1.15)
+            rotate(var(--r));
     }
 }
 
+/* ---------- MUSIC ---------- */
 
-/* =========================
-   MOBILE
-========================= */
+.song-button {
+    margin-top: 13px;
+    padding: 10px 22px;
+    font-size: 0.95rem;
+    background: transparent;
+    color: #8f4056;
+    border: 1px solid #c98a99;
+    box-shadow: none;
+}
+
+.song-button:hover {
+    background: rgba(201, 138, 153, 0.1);
+    box-shadow: none;
+}
+
+.music-note {
+    max-width: 430px;
+    margin: 8px auto 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    line-height: 1.35;
+    color: #9b777d;
+}
+
+/* ---------- FINAL SCREEN ---------- */
+
+#finalScreen {
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255, 220, 226, 0.75), transparent 28%),
+        #fff8f5;
+    overflow-y: auto;
+}
+
+.final-content {
+    max-width: 750px;
+    padding: 35px 10px;
+}
+
+.final-heart {
+    color: #a33e55;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 14px;
+    animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+#finalScreen h2 {
+    font-size: clamp(2.7rem, 6vw, 5rem);
+    margin: 0 0 24px;
+}
+
+.final-message {
+    color: #684247;
+    font-size: 1.2rem;
+    line-height: 1.65;
+}
+
+.final-message p {
+    margin: 0 0 20px;
+}
+
+.forever {
+    margin-top: 20px;
+    font-size: 2.4rem;
+    color: #a33e55;
+    letter-spacing: 10px;
+}
+
+.made-with {
+    margin-top: 28px;
+    color: #9b6871;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+/* final stars */
+
+.final-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.final-stars span {
+    position: absolute;
+    color: #c98a99;
+    opacity: 0.35;
+    animation: finalTwinkle 3s ease-in-out infinite;
+}
+
+.final-stars span:nth-child(1) { left: 12%; top: 17%; }
+.final-stars span:nth-child(2) { left: 26%; top: 72%; animation-delay: .8s; }
+.final-stars span:nth-child(3) { left: 42%; top: 15%; animation-delay: 1.2s; }
+.final-stars span:nth-child(4) { left: 59%; top: 78%; animation-delay: .4s; }
+.final-stars span:nth-child(5) { left: 76%; top: 20%; animation-delay: 1.8s; }
+.final-stars span:nth-child(6) { left: 88%; top: 55%; animation-delay: .9s; }
+.final-stars span:nth-child(7) { left: 17%; top: 48%; animation-delay: 1.5s; }
+.final-stars span:nth-child(8) { left: 70%; top: 62%; animation-delay: 2.1s; }
+
+@keyframes finalTwinkle {
+    0%, 100% {
+        transform: scale(0.7);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 0.8;
+    }
+}
+
+/* ---------- MOBILE ---------- */
 
 @media (max-width: 600px) {
-
-    .jar-container {
-        transform: scale(0.88);
-
-        margin-top: -10px;
-        margin-bottom: 5px;
+    .screen {
+        padding: 18px;
     }
 
-    .jar-page {
-        width: 100%;
-    }
-
-    .little-title {
-        margin-top: 10px;
-    }
-
-    .note {
-        width: 195px;
-    }
-
-    .note p {
-        font-size: 17px;
+    .eyebrow {
+        font-size: 0.82rem;
+        letter-spacing: 2.5px;
     }
 
     button {
-        font-size: 16px;
-        padding: 13px 27px;
+        font-size: 1rem;
+        padding: 14px 26px;
+    }
+
+    .opening-envelope,
+    .mini-envelope {
+        font-size: 3.2rem;
+    }
+
+    .opening-content h1 {
+        font-size: 2.25rem;
+    }
+
+    #screen1 h1 {
+        font-size: 2.65rem;
+        letter-spacing: -1px;
+        line-height: 1.05;
+    }
+
+    .big-heart,
+    .final-heart {
+        font-size: 4rem;
+    }
+
+    #screen2 h2 {
+        font-size: 2rem;
+    }
+
+    #screen2 p:not(.eyebrow) {
+        font-size: 1.05rem;
+        line-height: 1.5;
+    }
+
+    .jar-container {
+        transform: scale(0.82);
+        margin-top: 0;
+        margin-bottom: -18px;
+    }
+
+    .jar-page {
+        min-height: 100dvh;
+    }
+
+    .sparkle {
+        font-size: 1.1rem;
     }
 
     .final-content {
-        padding: 18px;
+        padding: 28px 5px;
+    }
+
+    .final-message {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .forever {
+        font-size: 2rem;
     }
 }
